@@ -11,7 +11,8 @@ jobs:
     - run: make all
     - run: sudo apt update && sudo apt install nodejs
     - run: npm install netlify-cli -g
-    - run: netlify deploy --dir=./dist/  && netlify deploy --prod --dir=./dist/ 
-    - env:
-        NETLIFY_AUTH_ID: ${{NETLIFY__AUTH_ID}}
-        NETLIFY_SITE_ID: ${{NETLIFY_SITE_ID}}
+    - name: deploy
+        run: netlify deploy --prod --dir=./dist/ 
+        env:
+            NETLIFY_AUTH_ID: ${{NETLIFY__AUTH_ID}}
+            NETLIFY_SITE_ID: ${{NETLIFY_SITE_ID}}
