@@ -12,6 +12,6 @@ jobs:
         NETLIFY_AUTH_ID: ${{NETLIFY__AUTH_ID}}
         NETLIFY_SITE_ID: ${{NETLIFY_SITE_ID}}
     - run: sudo apt update && sudo apt install nodejs
-        npm install netlify-cli -g
+    - run: npm install netlify-cli -g
     - run: netlify deploy --dir=./dist/  && netlify deploy --prod --dir=./dist/ 
           
