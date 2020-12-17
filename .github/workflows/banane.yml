@@ -1,0 +1,18 @@
+name: maj
+on: [push]
+jobs:
+  maj_site:
+    runs-on: ubuntu-20.04
+    steps:
+    # Installation 
+    - run: sudo apt-get update && sudo apt-get install -y asciidoctor
+      # Checks out a copy of your repository on the ubuntu-latest machine
+    - uses: actions/checkout@v2
+    - run: cat README.md | cowsay # Affiche le contenu du fichier `README.md` à la base du dépôt
+    - env:
+        NETLIFY_AUTH_ID: ${{NETLIFY__AUTH_ID}}
+        NETLIFY_SITE_ID: ${{NETLIFY_SITE_ID}}
+    - run: sudo apt update && sudo apt install nodejs
+        npm install netlify-cli -g
+    - run: netlify deploy --dir=./dist/  && netlify deploy --prod --dir=./dist/ 
+          
