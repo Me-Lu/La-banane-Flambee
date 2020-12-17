@@ -8,10 +8,10 @@ jobs:
     - run: sudo apt-get update && sudo apt-get install -y asciidoctor
       # Checks out a copy of your repository on the ubuntu-latest machine
     - uses: actions/checkout@v2
-    - env:
-        NETLIFY_AUTH_ID: ${{NETLIFY__AUTH_ID}}
-        NETLIFY_SITE_ID: ${{NETLIFY_SITE_ID}}
+    - run: make all
     - run: sudo apt update && sudo apt install nodejs
     - run: npm install netlify-cli -g
     - run: netlify deploy --dir=./dist/  && netlify deploy --prod --dir=./dist/ 
-          
+    - env:
+        NETLIFY_AUTH_ID: ${{NETLIFY__AUTH_ID}}
+        NETLIFY_SITE_ID: ${{NETLIFY_SITE_ID}}
